@@ -1,0 +1,26 @@
+services:
+  loki:
+    image: grafana/loki:3.0.0
+    command: -config.file=/etc/loki/local-config.yaml
+    profiles: ['observability']
+
+  promtail:
+    image: grafana/promtail:3.0.0
+    volumes:
+      - ./logs:/var/log/wellme:ro
+      - ./observability/promtail-config.yml:/etc/promtail/config.yml:ro
+    command: -config.file=/etc/promtail/config.yml
+    depends_on:
+      - loki
+    profiles: ['observability']
+
+  grafana:
+    image: grafana/grafana:11.0.0
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_AUTH_ANONYMOUS_ORG_ROLE: 'Admin'
+    ports:
+      - '3001:3000'
+    depends_on:
+      - loki
+    profiles: ['observability']

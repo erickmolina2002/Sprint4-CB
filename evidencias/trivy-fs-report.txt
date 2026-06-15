@@ -1,0 +1,52 @@
+2026-06-14T23:07:08Z	INFO	[vuln] Vulnerability scanning is enabled
+2026-06-14T23:07:08Z	INFO	[secret] Secret scanning is enabled
+2026-06-14T23:07:08Z	INFO	[secret] If your scanning is slow, please try '--scanners vuln' to disable secret scanning
+2026-06-14T23:07:08Z	INFO	[secret] Please see https://trivy.dev/docs/v0.71/guide/scanner/secret#recommendation for faster secret detection
+2026-06-14T23:07:11Z	INFO	Suppressing dependencies for development and testing. To display them, try the '--include-dev-deps' flag.
+2026-06-14T23:07:11Z	INFO	Number of language-specific files	num=1
+2026-06-14T23:07:11Z	INFO	[npm] Detecting vulnerabilities...
+
+Report Summary
+
+┌────────────────────────────────┬──────┬─────────────────┬─────────┐
+│             Target             │ Type │ Vulnerabilities │ Secrets │
+├────────────────────────────────┼──────┼─────────────────┼─────────┤
+│ package-lock.json              │ npm  │        0        │    -    │
+├────────────────────────────────┼──────┼─────────────────┼─────────┤
+│ evidencias/incident-output.txt │ text │        -        │    2    │
+└────────────────────────────────┴──────┴─────────────────┴─────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+evidencias/incident-output.txt (secrets)
+========================================
+Total: 2 (UNKNOWN: 0, LOW: 0, MEDIUM: 2, HIGH: 0, CRITICAL: 0)
+
+MEDIUM: JWT (jwt-token)
+════════════════════════════════════════
+JWT token
+────────────────────────────────────────
+ evidencias/incident-output.txt:5 (offset: 152 bytes)
+────────────────────────────────────────
+   3   
+   4   [1] Login legitimo (Estudante FIAP) e captura de token:
+   5 [ {"access_token":"***********************************************************************************************************************************************************************************************************************************************","secret_source":"h
+   6   
+────────────────────────────────────────
+
+
+MEDIUM: JWT (jwt-token)
+════════════════════════════════════════
+JWT token
+────────────────────────────────────────
+ evidencias/incident-output.txt:8 (offset: 497 bytes)
+────────────────────────────────────────
+   6   
+   7   [2] (V1) Forja de token ADMIN com o secret vazado (.env.leaked):
+   8 [ *********************************************************************************************************************************************************************************************************
+   9   
+────────────────────────────────────────
+
+

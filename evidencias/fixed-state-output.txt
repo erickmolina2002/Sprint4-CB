@@ -1,0 +1,20 @@
+== Estado CORRIGIDO (VULN_V1=false VULN_V2=false VULN_V3=false) ==
+Sun Jun 14 22:16:09 -03 2026
+
+[V3 corrigido] GET /admin/users SEM token deve retornar 403:
+sem token -> HTTP 403
+
+[V2 corrigido] login com credencial CORRETA 6x deve ser sempre 200:
+login 1 -> HTTP 200
+login 2 -> HTTP 200
+login 3 -> HTTP 200
+login 4 -> HTTP 200
+login 5 -> HTTP 200
+login 6 -> HTTP 200
+
+[V1 corrigido] token forjado com o secret antigo deve retornar 401:
+token forjado -> HTTP 401
+
+[V3 corrigido] admin REAL logado acessa /admin/users (DTO sem dados sensiveis):
+[{"id":"806e0b78-0707-4bff-9240-d227aca2ff13","role":"admin","level":50},{"id":"7c90265c-15e4-42c3-85d6-187ca37b0829","role":"user","level":4},{"id":"b2e2c5e9-4d6c-4216-a4d3-e26dcd7c2dd2","role":"user","level":6},{"id":"85054a90-1134-4b92-931c-901ae8183eda","role":"user","level":2},{"id":"d0f39242-a929-40a0-976e-26716ef36c78","role":"user","level":8}]
+[OK] Evidencia do estado corrigido em evidencias/fixed-state-output.txt

@@ -1,0 +1,74 @@
+{"timestamp":"2026-06-15T01:15:24.764Z","level":"security","event":"REQUEST","outcome":"info","method":"GET","route":"/health","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:25.230Z","level":"security","event":"NOTIFY_OK","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 204 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:25.233Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"hardcoded-fallback"}
+{"timestamp":"2026-06-15T01:15:25.233Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:15:25.233Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:15:25.233Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:25.347Z","level":"security","event":"REQUEST","outcome":"info","method":"GET","route":"/auth/me","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:25.359Z","level":"security","event":"ADMIN_USERS_ACCESS","outcome":"success","count":5,"ip":"::1","identified":false,"route":"/admin/users"}
+{"timestamp":"2026-06-15T01:15:25.359Z","level":"security","event":"REQUEST","outcome":"info","method":"GET","route":"/admin/users","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:25.497Z","level":"security","event":"NOTIFY_OK","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 204 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:25.498Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"hardcoded-fallback"}
+{"timestamp":"2026-06-15T01:15:25.498Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:15:25.498Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:15:25.499Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:25.637Z","level":"security","event":"NOTIFY_FAILED","outcome":"fail","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 504 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:25.779Z","level":"security","event":"NOTIFY_FAILED","outcome":"fail","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 504 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:25.922Z","level":"security","event":"NOTIFY_OK","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 204 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:25.923Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"hardcoded-fallback"}
+{"timestamp":"2026-06-15T01:15:25.923Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:15:25.923Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:15:25.923Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:26.067Z","level":"security","event":"NOTIFY_OK","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 204 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:26.067Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"hardcoded-fallback"}
+{"timestamp":"2026-06-15T01:15:26.068Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:15:26.068Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:15:26.068Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:26.212Z","level":"security","event":"NOTIFY_FAILED","outcome":"fail","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 504 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:26.355Z","level":"security","event":"NOTIFY_FAILED","outcome":"fail","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 504 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:26.496Z","level":"security","event":"NOTIFY_OK","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 204 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:26.497Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"hardcoded-fallback"}
+{"timestamp":"2026-06-15T01:15:26.497Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:15:26.497Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:15:26.497Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:26.638Z","level":"security","event":"NOTIFY_OK","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 204 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:26.639Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"hardcoded-fallback"}
+{"timestamp":"2026-06-15T01:15:26.639Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:15:26.639Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:15:26.640Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:15:26.785Z","level":"security","event":"NOTIFY_OK","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"notify HTTP 204 (util.devi.tools)"}
+{"timestamp":"2026-06-15T01:15:26.785Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"hardcoded-fallback"}
+{"timestamp":"2026-06-15T01:15:26.786Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:15:26.786Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:15:26.786Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.519Z","level":"security","event":"REQUEST","outcome":"info","method":"GET","route":"/health","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.580Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"env-secure"}
+{"timestamp":"2026-06-15T01:16:09.581Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:16:09.581Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:16:09.581Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.593Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"env-secure"}
+{"timestamp":"2026-06-15T01:16:09.594Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:16:09.594Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:16:09.594Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.607Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"env-secure"}
+{"timestamp":"2026-06-15T01:16:09.607Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:16:09.607Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:16:09.607Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.619Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"env-secure"}
+{"timestamp":"2026-06-15T01:16:09.619Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:16:09.619Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:16:09.619Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.630Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"env-secure"}
+{"timestamp":"2026-06-15T01:16:09.630Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:16:09.630Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:16:09.630Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.642Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"env-secure"}
+{"timestamp":"2026-06-15T01:16:09.642Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Estudante FIAP","ip":"::1"}
+{"timestamp":"2026-06-15T01:16:09.642Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Estudante FIAP","ip":"::1","detail":"role=user"}
+{"timestamp":"2026-06-15T01:16:09.642Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.739Z","level":"security","event":"JWT_SECRET_SOURCE","outcome":"info","detail":"env-secure"}
+{"timestamp":"2026-06-15T01:16:09.739Z","level":"security","event":"LOGIN_OK","outcome":"success","name":"Admin Care","ip":"::1"}
+{"timestamp":"2026-06-15T01:16:09.739Z","level":"security","event":"TOKEN_ISSUED","outcome":"success","name":"Admin Care","ip":"::1","detail":"role=admin"}
+{"timestamp":"2026-06-15T01:16:09.739Z","level":"security","event":"REQUEST","outcome":"info","method":"POST","route":"/auth/login","ip":"::1","userAgent":"curl/8.7.1"}
+{"timestamp":"2026-06-15T01:16:09.747Z","level":"security","event":"ADMIN_USERS_ACCESS","outcome":"success","count":5,"ip":"::1","identified":true,"route":"/admin/users"}
+{"timestamp":"2026-06-15T01:16:09.747Z","level":"security","event":"REQUEST","outcome":"info","method":"GET","route":"/admin/users","ip":"::1","userAgent":"curl/8.7.1"}
