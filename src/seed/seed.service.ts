@@ -45,7 +45,8 @@ export class SeedService implements OnModuleInit {
         xp: 540,
         level: 6,
         streak: 14,
-        healthNotes: 'Quadro de ansiedade; usa missoes de respiracao; alergia a penicilina.',
+        healthNotes:
+          'Quadro de ansiedade; usa missoes de respiracao; alergia a penicilina.',
       },
       {
         name: 'Carlos Lima',

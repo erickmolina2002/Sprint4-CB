@@ -30,7 +30,7 @@ export class AuthController {
   me(@Req() req: any) {
     return {
       user: req.user,
-      note: 'token aceito — se for forjado, evidencia o impacto do vazamento V1',
+      note: 'token aceito - se for forjado, evidencia o impacto do vazamento V1',
     };
   }
 }

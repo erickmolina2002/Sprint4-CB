@@ -1,0 +1,9 @@
+# Trivy Ignore Configuration
+# Use este arquivo APENAS para falsos positivos confirmados
+# Formato: CVE-ID ou GHSA-ID
+#
+# Exemplo (descomente se aplicável):
+# CVE-2024-1234
+# GHSA-xxxx-yyyy-zzzz
+#
+# Documentação: https://aquasecurity.github.io/trivy/latest/configuration/filtering/

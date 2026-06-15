@@ -1,4 +1,4 @@
-# IaC — Infraestrutura como Código (entregável 4)
+# IaC - Infraestrutura como Código (entregável 4)
 
 Arquivo `main.tf` que declara o deploy do container `wellme-back` com **6 controles
 de segurança** explícitos. Escrito em Terraform (HCL) por ser declarativo e deixar
@@ -15,7 +15,7 @@ os controles legíveis para o relatório.
 | C5 | Segredo via variável `sensitive` (nunca hardcoded/versionado) | `var.jwt_secret` |
 | C6 | **Rede isolada** + expõe apenas a porta da aplicação | `docker_network` + `ports` |
 
-## Validação (gera evidência — via Docker, sem instalar Terraform no host)
+## Validação (gera evidência - via Docker, sem instalar Terraform no host)
 
 ```bash
 # a partir da raiz do projeto:

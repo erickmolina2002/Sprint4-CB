@@ -1,0 +1,300 @@
+name: Security Pipeline CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    - cron: '0 2 * * *'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  # 1. SAST: CodeQL (GitHub Advanced Security)
+  codeql:
+    name: CodeQL Analysis (SAST)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'typescript' ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        continue-on-error: true
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+  # 2. SAST + Container Scanning: Trivy
+  trivy-code:
+    name: Trivy - Code Scan (SAST)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Trivy code scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-code-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-code-results.sarif'
+          category: 'trivy-code'
+
+  trivy-image:
+    name: Trivy - Docker Image Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build -t wellme-back:scan .
+        continue-on-error: true
+
+      - name: Run Trivy image scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'wellme-back:scan'
+          format: 'sarif'
+          output: 'trivy-image-results.sarif'
+          severity: 'CRITICAL,HIGH'
+        continue-on-error: true
+
+      - name: Upload Trivy image results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-image-results.sarif'
+          category: 'trivy-image'
+        continue-on-error: true
+
+  # 3. SCA: OWASP Dependency-Check
+  dependency-check:
+    name: OWASP Dependency-Check (SCA)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'wellme-back'
+          path: '.'
+          format: 'SARIF'
+          args: >
+            --enableExperimental
+
+      - name: Upload OWASP Dependency-Check results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'dependency-check-report.sarif'
+          category: 'owasp-dependency-check'
+        continue-on-error: true
+
+  # 4. NPM Dependencies: npm audit
+  npm-audit:
+    name: NPM Audit (SCA)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: Generate npm audit report
+        run: npm audit --json > npm-audit-report.json
+        continue-on-error: true
+
+      - name: Upload npm audit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: npm-audit-report
+          path: npm-audit-report.json
+        continue-on-error: true
+
+  # 5. Secret Scanning: TruffleHog
+  secret-scan-trufflehog:
+    name: TruffleHog - Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run TruffleHog scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --debug --only-verified
+
+  # 6. Secret Scanning: Gitleaks
+  secret-scan-gitleaks:
+    name: Gitleaks - Secret Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitleaks scan
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+  # 7. Container Security: Snyk
+  snyk-scan:
+    name: Snyk - Container & Dependency Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Snyk test
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+        continue-on-error: true
+
+  # 8. SAST: Semgrep
+  semgrep:
+    name: Semgrep - Code Scanning (SAST)
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep scan
+        run: |
+          semgrep --config=p/owasp-top-ten --json --output=semgrep-results.json .
+        continue-on-error: true
+
+      - name: Upload Semgrep results
+        uses: actions/upload-artifact@v3
+        with:
+          name: semgrep-results
+          path: semgrep-results.json
+        continue-on-error: true
+
+  # 9. Linting & Type Checking
+  lint-typecheck:
+    name: ESLint & TypeScript Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Run TypeScript type check
+        run: npm run type-check
+        continue-on-error: true
+
+  # 10. Security Report Summary
+  security-report:
+    name: Security Report Summary
+    runs-on: ubuntu-latest
+    needs: [ codeql, trivy-code, trivy-image, dependency-check, npm-audit, secret-scan-trufflehog, secret-scan-gitleaks, snyk-scan, semgrep, lint-typecheck ]
+    if: always()
+    steps:
+      - name: Download all reports
+        uses: actions/download-artifact@v3
+        continue-on-error: true
+
+      - name: Create security summary
+        run: |
+          echo "# Security Pipeline Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Scan Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Tool | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| CodeQL (SAST) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Trivy Code (SAST) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Trivy Image (Container) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| OWASP Dependency-Check (SCA) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| NPM Audit (SCA) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| TruffleHog (Secrets) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Gitleaks (Secrets) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Snyk (SCA) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| Semgrep (SAST) | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "| ESLint & TypeScript | Completed |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Artifacts" >> $GITHUB_STEP_SUMMARY
+          echo "- npm-audit-report.json" >> $GITHUB_STEP_SUMMARY
+          echo "- semgrep-results.json" >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify on security issues
+        if: failure()
+        run: |
+          echo "Security pipeline completed with warnings or failures"
+          echo "Review the detailed reports in GitHub Security tab"

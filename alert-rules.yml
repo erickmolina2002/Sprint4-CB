@@ -1,0 +1,33 @@
+source:
+  file: logs/app.log
+  format: json
+
+channel: "#seguranca"
+
+rules:
+  - name: login-bruteforce
+    when: event == "LOGIN_FAIL"
+    group_by: ip
+    threshold: 5
+    window: 1m
+    severity: high
+    action: block_ip
+
+  - name: admin-access-sem-login
+    when: event == "ADMIN_USERS_ACCESS" and identified == false
+    threshold: 1
+    severity: critical
+    action: page_oncall
+
+  - name: notify-instavel
+    when: event == "NOTIFY_FAILED"
+    threshold: 3
+    window: 1m
+    severity: medium
+    action: open_ticket
+
+  - name: segredo-vazado-em-uso
+    when: event == "JWT_SECRET_SOURCE" and detail == "hardcoded-fallback"
+    threshold: 1
+    severity: critical
+    action: rotate_secret

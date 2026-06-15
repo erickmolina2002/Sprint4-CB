@@ -1,0 +1,3 @@
+title = "Gitleaks Config for WellMe-Back"
+
+extend_ignore_globs = []

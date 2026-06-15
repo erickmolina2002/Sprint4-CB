@@ -1,0 +1,53 @@
+
+> wellme-back@0.0.1 lint
+> eslint "{src,apps,libs,test}/**/*.ts" --fix
+
+
+/Users/erickmolina/WebstormProjects/wellme-back/src/admin/admin-access.guard.ts
+  19:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  20:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  20:44  error  Unsafe member access .headers on an `any` value  @typescript-eslint/no-unsafe-member-access
+  25:13  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  26:7   error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  26:11  error  Unsafe member access .user on an `any` value     @typescript-eslint/no-unsafe-member-access
+  27:20  error  Unsafe member access .role on an `any` value     @typescript-eslint/no-unsafe-member-access
+
+/Users/erickmolina/WebstormProjects/wellme-back/src/admin/admin.controller.ts
+  24:7   error  Unsafe assignment of an `any` value           @typescript-eslint/no-unsafe-assignment
+  24:15  error  Unsafe member access .ip on an `any` value    @typescript-eslint/no-unsafe-member-access
+  25:25  error  Unsafe member access .user on an `any` value  @typescript-eslint/no-unsafe-member-access
+
+/Users/erickmolina/WebstormProjects/wellme-back/src/auth/auth.controller.ts
+  25:56  warning  Unsafe argument of type `any` assigned to a parameter of type `string | undefined`  @typescript-eslint/no-unsafe-argument
+  25:60  error    Unsafe member access .ip on an `any` value                                          @typescript-eslint/no-unsafe-member-access
+  32:7   error    Unsafe assignment of an `any` value                                                 @typescript-eslint/no-unsafe-assignment
+  32:17  error    Unsafe member access .user on an `any` value                                        @typescript-eslint/no-unsafe-member-access
+
+/Users/erickmolina/WebstormProjects/wellme-back/src/auth/auth.module.ts
+  15:20  error  '_config' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erickmolina/WebstormProjects/wellme-back/src/auth/guards/jwt-auth.guard.ts
+  14:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  15:11  error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  15:44  error  Unsafe member access .headers on an `any` value  @typescript-eslint/no-unsafe-member-access
+  20:7   error  Unsafe assignment of an `any` value              @typescript-eslint/no-unsafe-assignment
+  20:11  error  Unsafe member access .user on an `any` value     @typescript-eslint/no-unsafe-member-access
+
+/Users/erickmolina/WebstormProjects/wellme-back/src/main.ts
+  17:1  warning  Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator  @typescript-eslint/no-floating-promises
+
+/Users/erickmolina/WebstormProjects/wellme-back/src/observability/logging.interceptor.ts
+  16:11  error  Unsafe assignment of an `any` value                  @typescript-eslint/no-unsafe-assignment
+  17:11  error  Unsafe assignment of an `any` value                  @typescript-eslint/no-unsafe-assignment
+  17:32  error  Unsafe member access .method on an `any` value       @typescript-eslint/no-unsafe-member-access
+  18:11  error  Unsafe assignment of an `any` value                  @typescript-eslint/no-unsafe-assignment
+  18:31  error  Unsafe member access .originalUrl on an `any` value  @typescript-eslint/no-unsafe-member-access
+  18:50  error  Unsafe member access .url on an `any` value          @typescript-eslint/no-unsafe-member-access
+  19:11  error  Unsafe assignment of an `any` value                  @typescript-eslint/no-unsafe-assignment
+  19:28  error  Unsafe member access .ip on an `any` value           @typescript-eslint/no-unsafe-member-access
+  19:38  error  Unsafe member access .socket on an `any` value       @typescript-eslint/no-unsafe-member-access
+  20:11  error  Unsafe assignment of an `any` value                  @typescript-eslint/no-unsafe-assignment
+  20:47  error  Unsafe member access .headers on an `any` value      @typescript-eslint/no-unsafe-member-access
+
+✖ 32 problems (30 errors, 2 warnings)
+

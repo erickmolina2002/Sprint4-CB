@@ -51,7 +51,11 @@ export class AuthService {
       role: user.role,
     });
 
-    this.logger.log({ event: Events.JWT_SECRET_SOURCE, outcome: 'info', detail: source });
+    this.logger.log({
+      event: Events.JWT_SECRET_SOURCE,
+      outcome: 'info',
+      detail: source,
+    });
     this.logger.log({ event: Events.LOGIN_OK, outcome: 'success', name, ip });
     this.logger.log({
       event: Events.TOKEN_ISSUED,
